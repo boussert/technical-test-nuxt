@@ -20,6 +20,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxt/devtools',
+    '@vueuse/nuxt',
   ],
 
   css: [
