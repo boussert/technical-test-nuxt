@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
     public: {
       apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+      tmdbHeaderAuth: process.env.NUXT_PUBLIC_TMDB_HEADER_AUTH
     }
   },
 
