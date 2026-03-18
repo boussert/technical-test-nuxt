@@ -1,8 +1,10 @@
 <template>
-    <MoviesList></MoviesList>
+    <main class="p-6">
+        <MovieCardList></MovieCardList>
+    </main>
 </template>
 
 <script lang="ts" setup>
-import MoviesList from '~/components/MoviesList/MoviesList.vue';
+import MovieCardList from '~/components/MovieCardList/MovieCardList.vue';
 
 </script>

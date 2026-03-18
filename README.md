@@ -10,4 +10,5 @@ Le projet utilise le template [Nuxt Starter](https://github.com/lazercaveman/nux
 5. Run `pnpm dev` to start the local development environment
 
 ! Configuration nécessaire !
+
 Ajouter le fichier `.env` à la racine du projet, avec l'Access Token Auth de votre API TMDB : `NUXT_PUBLIC_TMDB_HEADER_AUTH=VOTRE_ACCESS_TOKEN`
