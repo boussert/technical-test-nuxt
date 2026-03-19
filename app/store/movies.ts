@@ -5,6 +5,7 @@ import type { ITmdbMoviesResponse } from '~/types/ITmdbMoviesResponse';
 export const useMoviesStore = defineStore('movies', () => {
     const moviesNowPlaying = ref<IMovie[]>([]);
     const loading = ref<boolean>(false);
+    const baseUrl = "https://api.themoviedb.org/3";
 
     /**
      * @description Fetch movies that are now playing theaters
@@ -14,7 +15,6 @@ export const useMoviesStore = defineStore('movies', () => {
         try {
             loading.value = true;
 
-            const baseUrl = "https://api.themoviedb.org/3";
             const endpoint = `${baseUrl}/movie/now_playing?language=fr-FR&page=1`;
             const headers = {
                 'Authorization': `Bearer ${tmdbHeaderAuth}`,

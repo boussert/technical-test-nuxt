@@ -1,5 +1,5 @@
 <template>
-    <a class="movie-card">
+    <NuxtLink :to="`/movie/${movie.id}`" class="movie-card">
         <div class="movie-card__image-container">
             <img
                 v-if="movie.poster_path"
@@ -12,7 +12,7 @@
             />
         </div>
         <h3 class="movie-card__title">{{ movie.title }}</h3>
-    </a>
+    </NuxtLink>
 </template>
 
 <script lang="ts" setup>
