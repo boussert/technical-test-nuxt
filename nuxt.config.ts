@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/devtools',
     '@vueuse/nuxt',
+    'vuetify-nuxt-module'
   ],
 
   css: [
