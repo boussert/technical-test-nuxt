@@ -23,6 +23,22 @@
             </ul>
             <div v-if="movieData?.vote_average">{{  movieData.vote_average }} / 10</div>
             <div v-if="movieData?.vote_count">{{  movieData.vote_count }} votes</div>
+            <div v-if="movieDirectors">
+                Réalisateurs : 
+                <ul>
+                    <li v-for="director in movieDirectors" :key="director.id">
+                        {{ director.name }}
+                    </li>
+                </ul>
+            </div>
+            <div v-if="movieCast">
+                Têtes d'affiche :
+                <ul>
+                    <li v-for="actor in movieCast" :key="actor.id">
+                        {{ actor.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -53,4 +69,12 @@ const { data: movieData, error, pending, refresh } = await useFetch<IMovieDetail
         immediate: !!movieId // Avoid to fetch the movie if there is no valid id
     }
 );
+
+const movieDirectors = computed(() => {
+    return movieData.value?.credits.crew.filter(crewPerson => crewPerson.job === 'Director')
+});
+
+const movieCast = computed(() => {
+  return movieData.value?.credits.cast.slice(0, 5);
+});
 </script>
