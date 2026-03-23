@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    '@/assets/style/animations.scss',
+    '@/assets/style/index.scss',
     '@/assets/style/tailwind.css',
   ],
 

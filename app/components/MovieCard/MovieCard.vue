@@ -28,9 +28,9 @@ const props = defineProps<{
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    border: 1px solid var(--color-blue-100);
-    border-radius: 12px;
     overflow: hidden;
+    background: var(--clr-surface-a10);
+    border-radius: 6px;
 
     &:hover {
         .movie-card__image {
@@ -43,7 +43,7 @@ const props = defineProps<{
 
     &__image-container {
         height: 230px;
-        background-color: var(--color-blue-100); // Default background color for placeholder in case the movie has no poster image
+        background-color: var(--clr-surface-a20); // Default background color for placeholder in case the movie has no poster image
         overflow: hidden;
     }
 
@@ -56,6 +56,7 @@ const props = defineProps<{
 
     &__title {
         padding: 12px;
+        min-height: 95px;
     }
 }
 </style>

@@ -11,12 +11,25 @@
 :root {
   /* Primitive colors */
   --color-white: hsl(0, 0%, 100%);
-  --color-blue-100: hsl(198, 53%, 92%);
-  --color-blue-800: hsl(196, 100%, 19%);
+
+  /* I have generated manually theme colors with the help of https://colorffy.com/dark-theme-generator
+  /** Theme primary colors */
+  --clr-primary-a0: #95a8ed;
+  --clr-primary-a10: #a1b1ef;
+  --clr-primary-a20: #aebbf1;
+  --clr-primary-a30: #bac4f3;
+  --clr-primary-a40: #c5cef5;
+  --clr-primary-a50: #d1d7f7;
+
+  /** Theme surface colors */
+  --clr-surface-a0: #0d1c38;
+  --clr-surface-a10: #26314c;
+  --clr-surface-a20: #3f4760;
+  --clr-surface-a30: #585e75;
+  --clr-surface-a40: #72778b;
+  --clr-surface-a50: #8d91a1;
 }
 
 @theme {
   --color-white: var(--color-white);
-  --color-blue-100: var(--color-blue-100);
-  --color-blue-800: var(--color-blue-800);
 }

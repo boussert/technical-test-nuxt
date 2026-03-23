@@ -36,7 +36,7 @@
             >
             </v-number-input>
 
-            <v-btn type="submit" @click="submitCommentForm">
+            <v-btn type="submit" @click="submitCommentForm" :disabled="v$.$invalid">
                 Envoyer le commentaire
             </v-btn>
         </v-form>

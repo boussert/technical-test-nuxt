@@ -19,7 +19,7 @@ const props = defineProps<{
     &__grid {
         display: grid;
         grid-gap: 32px;
-        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
     }
 }
 </style>
