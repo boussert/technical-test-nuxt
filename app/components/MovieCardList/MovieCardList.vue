@@ -1,39 +1,17 @@
 <template>
-    <h2>Films actuellement au cinéma</h2>
-    <ul v-if="moviesStore.moviesNowPlaying.length" class="movie-cards-list__grid">
-        <li v-for="movie in moviesStore.moviesNowPlaying" :key="movie.id">
+    <ul v-if="movies.length" class="movie-cards-list__grid">
+        <li v-for="movie in movies" :key="movie.id">
             <MovieCard :movie="movie" />
         </li>
     </ul>
-    <div ref="infiniteLoaderRef">
-      <p v-if="moviesStore.loading">
-        Chargement...
-      </p>
-    </div>
 </template>
 
 <script lang="ts" setup>
-import { useIntersectionObserver } from '@vueuse/core';
-import { useMoviesStore } from '~/store/movies';
+import type { IMovie } from '~/types/IMovie';
 
-const moviesStore = useMoviesStore();
-
-const config = useRuntimeConfig();
-const tmdbHeaderAuth = config.public.tmdbHeaderAuth;
-const infiniteLoaderRef = ref(null);
-
-// Fetch next page of movies each time we are at the end of the list
-const { stop } = useIntersectionObserver(
-  infiniteLoaderRef,
-  ([entry]) => {
-    if (entry?.isIntersecting && !moviesStore.loading && moviesStore.hasMorePages) {
-      moviesStore.fetchNextPageMovies(tmdbHeaderAuth);
-    }
-  },
-  { rootMargin: '200px' }
-);
-
-onUnmounted(() => stop());
+const props = defineProps<{
+    movies: IMovie[]
+}>()
 </script>
 
 <style lang="scss" scoped>

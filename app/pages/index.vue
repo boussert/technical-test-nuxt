@@ -1,10 +1,10 @@
 <template>
     <main class="p-6">
-        <MovieCardList></MovieCardList>
+        <AllMovies />
     </main>
 </template>
 
 <script lang="ts" setup>
-import MovieCardList from '~/components/MovieCardList/MovieCardList.vue';
+import AllMovies from '~/components/AllMovies/AllMovies.vue';
 
 </script>
