@@ -4,4 +4,5 @@ export interface ICreditCast {
     id: number;
     name: string;
     order: number;
+    profile_path?: string;
 }

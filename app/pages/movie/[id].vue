@@ -1,11 +1,23 @@
 <template>
     <NuxtLink to="/" class="back-link">Accueil</NuxtLink>
-    <div class="flex gap-4">
-        <div class="movie__image-container">
+    <div class="relative flex ga-8 pa-4 pt-10">
+        <div class="absolute top-0 left-0 w-full h-full -z-1 max-h-[30rem]">
+            <img
+                v-if="movieData?.backdrop_path"
+                :src="`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`"
+                class="w-full h-full object-cover"
+                alt="" 
+                loading="lazy"
+                width="500" 
+                height="750"
+            />
+        </div>
+        
+        <div class="h-[230px]">
             <img
                 v-if="movieData?.poster_path"
+                class="object-cover h-full"
                 :src="`https://image.tmdb.org/t/p/w500${movieData.poster_path}`"
-                class="movie-card__image"
                 alt="" 
                 loading="lazy"
                 width="500" 
@@ -13,38 +25,50 @@
             />
         </div>
 
-        <div class="flex-1">
-            <h1>{{ movieData?.title }}</h1>
+        <div class="relative text-white">
+            <h1 class="text-lg font-semibold">{{ movieData?.title }}</h1>
             <p>{{ movieData?.overview }}</p>
-            <ul v-if="movieData?.genres.length">
-                <li v-for="genre in movieData?.genres" :key="genre.id">
+            <div v-if="movieData?.genres.length">
+                <v-chip v-for="genre in movieData?.genres" :key="genre.id" variant="flat">
                     {{  genre.name }}
-                </li>
-            </ul>
+                </v-chip>
+            </div>
             <div v-if="movieData?.vote_average">{{  movieData.vote_average }} / 10</div>
             <div v-if="movieData?.vote_count">{{  movieData.vote_count }} votes</div>
-            <div v-if="movieDirectors">
-                Réalisateurs : 
-                <ul>
-                    <li v-for="director in movieDirectors" :key="director.id">
-                        {{ director.name }}
-                    </li>
-                </ul>
-            </div>
-            <div v-if="movieCast">
-                Têtes d'affiche :
-                <ul>
-                    <li v-for="actor in movieCast" :key="actor.id">
-                        {{ actor.name }}
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
+
+    <div class="flex pa-4 ga-4 flex-column">
+        <div v-if="movieDirectors">
+            Réalisateurs : 
+            <ul class="flex ga-4 flex-wrap">
+                <li v-for="director in movieDirectors" :key="director.id">
+                    <v-avatar
+                        :image="'https://image.tmdb.org/t/p/w185' + director.profile_path"
+                    ></v-avatar>
+                    {{ director.name }}
+                </li>
+            </ul>
+        </div>
+        <div v-if="movieCast">
+            Têtes d'affiche :
+            <ul class="flex ga-4 flex-wrap">
+                <li v-for="actor in movieCast" :key="actor.id">
+                    <v-avatar
+                        :image="'https://image.tmdb.org/t/p/w185' + actor.profile_path"
+                    ></v-avatar>
+                    {{ actor.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <MovieComments :movie-id="Number(movieId)" />
 </template>
 
 <script setup lang="ts">
 import type { IMovieDetail } from '~/types/IMovieDetail';
+import MovieComments from '~/components/MovieComments/MovieComments.vue';
 
 const route = useRoute();
 const movieId = route.params.id;
