@@ -1,10 +1,9 @@
 <template>
-    <main class="p-6">
+    <div class="pa-8">
         <AllMovies />
-    </main>
+    </div>
 </template>
 
 <script lang="ts" setup>
 import AllMovies from '~/components/AllMovies/AllMovies.vue';
-
 </script>

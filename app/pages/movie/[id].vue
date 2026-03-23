@@ -1,10 +1,9 @@
 <template>
-    <NuxtLink to="/" class="back-link">Accueil</NuxtLink>
-    <div class="relative flex ga-8 pa-4 pt-10">
+    <div class="relative flex ga-8 pa-4 pt-10 mb-12">
         <div class="absolute top-0 left-0 w-full h-full -z-1 max-h-[30rem]">
             <img
                 v-if="movieData?.backdrop_path"
-                :src="`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`"
+                :src="`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movieData.backdrop_path}`"
                 class="w-full h-full object-cover"
                 alt="" 
                 loading="lazy"
@@ -13,10 +12,10 @@
             />
         </div>
         
-        <div class="h-[230px]">
+        <div class="relative -bottom-40 flex-0-0 overflow-hidden rounded-md w-[230px]">
             <img
                 v-if="movieData?.poster_path"
-                class="object-cover h-full"
+                class="object-contain"
                 :src="`https://image.tmdb.org/t/p/w500${movieData.poster_path}`"
                 alt="" 
                 loading="lazy"
@@ -26,15 +25,20 @@
         </div>
 
         <div class="relative text-white">
-            <h1 class="text-lg font-semibold">{{ movieData?.title }}</h1>
-            <p>{{ movieData?.overview }}</p>
-            <div v-if="movieData?.genres.length">
+            <h1 class="text-headline-large font-semibold mb-4">{{ movieData?.title }}</h1>
+            <p class="mb-4 max-w-[42rem]">{{ movieData?.overview }}</p>
+            <div v-if="movieData?.genres.length" class="flex flex-wrap ga-2 mb-3">
                 <v-chip v-for="genre in movieData?.genres" :key="genre.id" variant="flat">
                     {{  genre.name }}
                 </v-chip>
             </div>
-            <div v-if="movieData?.vote_average">{{  movieData.vote_average }} / 10</div>
-            <div v-if="movieData?.vote_count">{{  movieData.vote_count }} votes</div>
+            <div class="flex ga-8">
+                <div v-if="movieData?.vote_average" class="flex align-center ga-2">
+                    <v-icon icon="mdi-star" size="small"></v-icon>
+                    {{  movieData.vote_average }} / 10
+                </div>
+                <div v-if="movieData?.vote_count">{{  movieData.vote_count }} votes</div>
+            </div>
         </div>
     </div>
 

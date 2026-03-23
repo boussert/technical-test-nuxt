@@ -1,6 +1,7 @@
 <template>
-    <h2>Films actuellement au cinéma</h2>
-    <MovieSearch @update-search="updateSearch" />
+    <div class="flex flex-wrap ga-4 align-center justify-space-between">
+      <h2 v-if="!isSearchMode" class="text-headline-medium mb-8">Films actuellement au cinéma</h2>
+    </div>
     <MovieCardList :movies="displayedMovies" />
 
     <div ref="infiniteLoaderRef">
@@ -10,13 +11,12 @@
     </div>
 
     <p v-if="!moviesStore.loading && displayedMovies.length === 0 && isSearchMode">
-      Aucun film trouvé pour "{{ searchQuery }}"
+      Aucun film trouvé pour "{{ moviesStore.searchQuery }}"
     </p>
 </template>
 
 <script lang="ts" setup>
 import MovieCardList from '~/components/MovieCardList/MovieCardList.vue';
-import MovieSearch from '~/components/MovieSearch/MovieSearch.vue';
 import { useIntersectionObserver } from '@vueuse/core';
 import { useMoviesStore } from '~/store/movies';
 
@@ -24,8 +24,6 @@ const moviesStore = useMoviesStore();
 const config = useRuntimeConfig();
 const tmdbHeaderAuth = config.public.tmdbHeaderAuth;
 const infiniteLoaderRef = ref(null);
-
-const searchQuery = ref('');
 
 onMounted(() => {
   moviesStore.fetchNextPageMovies(tmdbHeaderAuth);
@@ -39,7 +37,7 @@ const { stop } = useIntersectionObserver(
 
     if (isSearchMode.value) {
       if (moviesStore.hasMoreSearchPages) {
-        moviesStore.searchMovie(tmdbHeaderAuth, searchQuery.value);
+        moviesStore.searchMovie(tmdbHeaderAuth);
       }
     } else {
       if (moviesStore.hasMoreNowPlayingPages) {
@@ -51,13 +49,8 @@ const { stop } = useIntersectionObserver(
 );
 onUnmounted(() => stop());
 
-const updateSearch = (query: string) => {
-  searchQuery.value = query;
-  moviesStore.searchMovie(tmdbHeaderAuth, searchQuery.value);
-}
-
 const isSearchMode = computed(() => {
-  return searchQuery.value?.length >= moviesStore.MOVIE_QUERY_MIN_LENGTH;
+  return moviesStore.searchQuery.length >= moviesStore.MOVIE_QUERY_MIN_LENGTH;
 });
 
 const displayedMovies = computed(() => {

@@ -14,6 +14,7 @@ export const useMoviesStore = defineStore('movies', () => {
     const hasMoreNowPlayingPages = ref<boolean>(true);
 
     // Movies search data
+    const searchQuery = ref<string>('');
     const lastSearchQuery = ref<string>('');
     const moviesSearch = ref<IMovie[]>([]);
     const currentSearchPage = ref<number>(1);
@@ -57,16 +58,21 @@ export const useMoviesStore = defineStore('movies', () => {
         }
     }
 
-    async function searchMovie(tmdbHeaderAuth: string, query: string) {
-        if (loading.value || query.length < MOVIE_QUERY_MIN_LENGTH) return;
+    async function updateSearchQuery(tmdbHeaderAuth: string, query: string) {
+        searchQuery.value = query;
+        searchMovie(tmdbHeaderAuth);
+    }
+
+    async function searchMovie(tmdbHeaderAuth: string) {
+        if (loading.value || searchQuery.value.length < MOVIE_QUERY_MIN_LENGTH) return;
 
         // We want to reset values if this is a new search
-        if (query !== lastSearchQuery.value) {
+        if (searchQuery.value !== lastSearchQuery.value) {
             moviesSearch.value = [];
             currentSearchPage.value = 1;
             totalSearchPages.value = 1;
             hasMoreSearchPages.value = true;
-            lastSearchQuery.value = query;
+            lastSearchQuery.value = searchQuery.value;
         }
 
         if (!hasMoreSearchPages) return;
@@ -85,7 +91,7 @@ export const useMoviesStore = defineStore('movies', () => {
                 params: {
                     language: 'fr-FR',
                     page: currentSearchPage.value,
-                    query: query
+                    query: searchQuery.value
                 }
             });
 
@@ -103,12 +109,14 @@ export const useMoviesStore = defineStore('movies', () => {
     return {
         fetchNextPageMovies,
         searchMovie,
+        updateSearchQuery,
         currentPage,
         hasMoreNowPlayingPages,
         hasMoreSearchPages,
         loading,
         moviesNowPlaying,
         moviesSearch,
+        searchQuery,
         totalPages,
         MOVIE_QUERY_MIN_LENGTH
     }

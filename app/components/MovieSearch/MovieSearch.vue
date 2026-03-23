@@ -5,6 +5,8 @@
       label="Rechercher un film"
       type="search"
       clearable
+      hide-details
+      variant="underlined"
       @update:model-value="updateMovieSearch"
       @click:clear="resetSearchQuery"
     >
