@@ -111,6 +111,7 @@ export const useMoviesStore = defineStore('movies', () => {
         searchMovie,
         updateSearchQuery,
         currentPage,
+        currentSearchPage,
         hasMoreNowPlayingPages,
         hasMoreSearchPages,
         loading,
