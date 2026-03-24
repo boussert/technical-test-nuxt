@@ -40,10 +40,22 @@ export default defineNuxtConfig({
             colors: {
               surfaceA0: 'hsl(219, 62%, 14%)',
               surfaceA10: 'hsl(223, 33%, 22%)',
+              surfaceA20: 'hsl(225, 21%, 31%)',
+              surfaceA30: 'hsl(228, 14%, 40%)',
             }
           }
         }
       },
+    defaults: {
+      VBtn: {
+        variant: 'flat',
+        color: 'surfaceA30',
+        elevation: 0
+      },
+      VChip: {
+        color: 'surfaceA20',
+      }
+    }
     }
   },
 

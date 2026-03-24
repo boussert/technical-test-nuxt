@@ -1,18 +1,23 @@
 <template>
-    <div class="flex flex-wrap ga-4 align-center justify-space-between">
-      <h2 v-if="!isSearchMode" class="text-headline-medium mb-8">Films actuellement au cinéma</h2>
-    </div>
-    <MovieCardList :movies="displayedMovies" />
+  <div class="flex flex-wrap ga-4 align-center justify-space-between">
+    <h2
+      v-if="!isSearchMode"
+      class="text-headline-medium mb-8"
+    >
+      Films actuellement au cinéma
+    </h2>
+  </div>
+  <MovieCardList :movies="displayedMovies" />
 
-    <div ref="infiniteLoaderRef">
-      <p v-if="moviesStore.loading">
-        Chargement...
-      </p>
-    </div>
-
-    <p v-if="!moviesStore.loading && displayedMovies.length === 0 && isSearchMode">
-      Aucun film trouvé pour "{{ moviesStore.searchQuery }}"
+  <div ref="infiniteLoaderRef">
+    <p v-if="moviesStore.loading">
+      Chargement...
     </p>
+  </div>
+
+  <p v-if="!moviesStore.loading && displayedMovies.length === 0 && isSearchMode">
+    Aucun film trouvé pour "{{ moviesStore.searchQuery }}"
+  </p>
 </template>
 
 <script lang="ts" setup>

@@ -1,9 +1,15 @@
 <template>
-    <ul v-if="movies.length" class="movie-cards-list__grid">
-        <li v-for="movie in movies" :key="movie.id">
-            <MovieCard :movie="movie" />
-        </li>
-    </ul>
+  <ul
+    v-if="movies.length"
+    class="movie-cards-list__grid"
+  >
+    <li
+      v-for="movie in movies"
+      :key="movie.id"
+    >
+      <MovieCard :movie="movie" />
+    </li>
+  </ul>
 </template>
 
 <script lang="ts" setup>

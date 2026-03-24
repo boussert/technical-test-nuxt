@@ -1,41 +1,44 @@
 <template>
-    <div class="mt-8 p-4">
-        <h2 class="text-lg font-semibold mb-4">Ajouter un commentaire</h2>
+  <div>
+    <h3 class="text-lg font-semibold mb-4">
+      Ajouter un commentaire
+    </h3>
 
-        <v-form>
-            <v-text-field
-                v-model="state.username"
-                label="Nom d'utilisateur"
-                required
-                :error="v$.username.$error"
-                :error-messages="v$.username.$errors.map((e: { $message: any; }) => e.$message)"
-            >
-            </v-text-field>
+    <v-form>
+      <v-text-field
+        v-model="state.username"
+        label="Nom d'utilisateur"
+        required
+        :error="v$.username.$error"
+        :error-messages="v$.username.$errors.map((e: { $message: any; }) => e.$message)"
+      />
 
-            <v-textarea
-                v-model="state.message"
-                :counter="500"
-                label="Message"
-                required
-                :error-messages="v$.message.$errors.map((e: { $message: any; }) => e.$message)"
-            >
-            </v-textarea>
+      <v-textarea
+        v-model="state.message"
+        :counter="500"
+        label="Message"
+        required
+        :error-messages="v$.message.$errors.map((e: { $message: any; }) => e.$message)"
+      />
 
-            <v-number-input
-                v-model="state.rating"
-                controlVariant="hidden"
-                label="Note (/10)"
-                :min="1"
-                :max="10"
-                :error-messages="v$.rating.$errors.map((e: { $message: any; }) => e.$message)"
-            >
-            </v-number-input>
+      <v-number-input
+        v-model="state.rating"
+        control-variant="hidden"
+        label="Note (/10)"
+        :min="1"
+        :max="10"
+        :error-messages="v$.rating.$errors.map((e: { $message: any; }) => e.$message)"
+      />
 
-            <v-btn type="submit" @click="submitCommentForm" :disabled="v$.$invalid">
-                Envoyer le commentaire
-            </v-btn>
-        </v-form>
-    </div>
+      <v-btn
+        type="submit"
+        :disabled="v$.$invalid"
+        @click="submitCommentForm"
+      >
+        Envoyer le commentaire
+      </v-btn>
+    </v-form>
+  </div>
 </template>
 
 <script setup lang="ts">

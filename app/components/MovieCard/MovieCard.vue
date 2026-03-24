@@ -1,18 +1,23 @@
 <template>
-    <NuxtLink :to="`/movie/${movie.id}`" class="movie-card">
-        <div class="movie-card__image-container">
-            <img
-                v-if="movie.poster_path"
-                :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
-                class="movie-card__image"
-                alt="" 
-                loading="lazy"
-                width="500" 
-                height="750"
-            />
-        </div>
-        <h3 class="movie-card__title">{{ movie.title }}</h3>
-    </NuxtLink>
+  <NuxtLink
+    :to="`/movie/${movie.id}`"
+    class="movie-card"
+  >
+    <div class="movie-card__image-container">
+      <img
+        v-if="movie.poster_path"
+        :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
+        class="movie-card__image"
+        alt="" 
+        loading="lazy"
+        width="500" 
+        height="750"
+      >
+    </div>
+    <h3 class="movie-card__title">
+      {{ movie.title }}
+    </h3>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>

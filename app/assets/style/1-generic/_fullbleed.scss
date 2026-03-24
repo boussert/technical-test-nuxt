@@ -1,0 +1,23 @@
+// Shamelessly copied from the great Josh Comeau https://www.joshwcomeau.com/css/full-bleed/
+
+.wrapper {
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(var(--min-width-wrapper, 117ch), 100%)
+    1fr;
+  padding-inline: var(--spacing-sm);
+
+  &--small {
+    --min-width-wrapper: 80ch;
+  }
+}
+
+.wrapper > * {
+  grid-column: 2;
+}
+
+.full-bleed {
+  width: 100%;
+  grid-column: 1 / 4;
+}

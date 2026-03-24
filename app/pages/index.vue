@@ -1,7 +1,7 @@
 <template>
-    <div class="pa-8">
-        <AllMovies />
-    </div>
+  <div class="pa-8">
+    <AllMovies />
+  </div>
 </template>
 
 <script lang="ts" setup>

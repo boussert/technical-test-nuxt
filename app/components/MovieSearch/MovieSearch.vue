@@ -1,16 +1,15 @@
 <template>
-    <v-text-field
-      v-model="searchQuery"
-      prepend-inner-icon="$search"
-      label="Rechercher un film"
-      type="search"
-      clearable
-      hide-details
-      variant="underlined"
-      @update:model-value="updateMovieSearch"
-      @click:clear="resetSearchQuery"
-    >
-    </v-text-field>
+  <v-text-field
+    v-model="searchQuery"
+    prepend-inner-icon="$search"
+    label="Rechercher un film"
+    type="search"
+    clearable
+    hide-details
+    variant="underlined"
+    @update:model-value="updateMovieSearch"
+    @click:clear="resetSearchQuery"
+  />
 </template>
 
 <script lang="ts" setup>

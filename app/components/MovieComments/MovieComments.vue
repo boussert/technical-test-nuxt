@@ -1,9 +1,14 @@
 <template>
-    <div class="mt-8 p-4">
-        <h2 class="text-lg font-semibold mb-4">Commentaires</h2>
-        <MovieCommentList :movie-id="movieId" />
-        <MovieCommentForm :movie-id="movieId" />
-    </div>
+  <div class="p-4">
+    <h2 class="text-lg font-semibold mb-4">
+      Commentaires
+    </h2>
+    <MovieCommentList
+      class="mb-6"
+      :movie-id="movieId"
+    />
+    <MovieCommentForm :movie-id="movieId" />
+  </div>
 </template>
 
 <script setup lang="ts">
