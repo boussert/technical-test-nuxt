@@ -1,13 +1,5 @@
 import { defineStore } from 'pinia';
-
-interface IComment {
-  id: string;
-  movieId: number;
-  username: string;
-  message: string;
-  rating: number;
-  createdAt: string;
-}
+import type { IComment } from '~/types/IComment';
 
 export const useCommentsStore = defineStore('comments', () => {
     const comments = ref<IComment[]>([]);

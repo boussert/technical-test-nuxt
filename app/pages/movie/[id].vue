@@ -13,9 +13,9 @@
           height="750"
         >
       </div>
-      <div class="wrapper flex ga-8">
-        <div class="flex ga-8">
-          <div class="relative -inset-be-[40px] flex-0-0 overflow-hidden rounded-md w-[230px]">
+      <div class="wrapper">
+        <div class="@container flex gap-8">
+          <div class="hidden md:block relative -inset-be-[40px] flex-0-0 overflow-hidden rounded-md w-[230px]">
             <img
               v-if="movieData?.poster_path"
               class="object-contain"
@@ -36,7 +36,7 @@
             </p>
             <div
               v-if="movieData?.genres.length"
-              class="flex flex-wrap ga-2 mb-3"
+              class="flex flex-wrap gap-2 mb-3"
             >
               <v-chip
                 v-for="genre in movieData?.genres"
@@ -46,10 +46,10 @@
                 {{ genre.name }}
               </v-chip>
             </div>
-            <div class="flex ga-8">
+            <div class="flex gap-8">
               <div
                 v-if="movieData?.vote_average"
-                class="flex align-center ga-2"
+                class="flex align-center gap-2"
               >
                 <v-icon
                   icon="mdi-star"
@@ -66,12 +66,12 @@
       </div>            
     </div>
 
-    <div class="flex pa-4 ga-6 flex-column">
+    <div class="flex pa-4 gap-6 flex-column">
       <div v-if="movieDirectors">
         <h2 class="text-lg font-semibold mb-4">
           Réalisateurs
         </h2>
-        <ul class="flex ga-4 flex-wrap">
+        <ul class="flex gap-4 flex-wrap">
           <li
             v-for="director in movieDirectors"
             :key="director.id"
@@ -87,7 +87,7 @@
         <h2 class="text-lg font-semibold mb-4">
           Têtes d'affiche
         </h2>
-        <ul class="flex ga-4 flex-wrap">
+        <ul class="flex gap-4 flex-wrap">
           <li
             v-for="actor in movieCast"
             :key="actor.id"

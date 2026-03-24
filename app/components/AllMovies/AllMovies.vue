@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap ga-4 align-center justify-space-between">
+  <div class="flex flex-wrap gap-4 align-center justify-space-between">
     <h2
       v-if="!isSearchMode"
       class="text-headline-medium mb-8"

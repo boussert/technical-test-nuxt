@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex flex-wrap align-center justify-space-between ga-4 pa-8 min-h-[80px]"
+    class="flex flex-wrap align-center justify-space-between gap-4 pa-8 min-h-[80px]"
     style="background-color: var(--clr-surface-a10);"
   >
     <NuxtLink to="/">

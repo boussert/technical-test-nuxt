@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column ga-4">
+  <div class="flex flex-column gap-4">
     <v-card
       v-for="comment in comments"
       :key="comment.id"
@@ -9,7 +9,7 @@
       variant="flat"
     >
       <v-card-text>
-        <div class="flex justify-between ga-3 mb-3">
+        <div class="flex justify-between gap-3 mb-3">
           <div>
             <div class="text-caption">
               {{ comment.username }}
