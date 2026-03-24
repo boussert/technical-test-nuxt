@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import type { IMovie } from '~/types/IMovie';
 
-const props = defineProps<{
+defineProps<{
     movies: IMovie[]
 }>()
 </script>

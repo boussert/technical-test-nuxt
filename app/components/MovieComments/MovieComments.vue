@@ -15,7 +15,7 @@
 import MovieCommentForm from '~/components/MovieCommentForm/MovieCommentForm.vue';
 import MovieCommentList from '~/components/MovieCommentList/MovieCommentList.vue';
 
-const props = defineProps<{
+defineProps<{
   movieId: number;
 }>();
 </script>

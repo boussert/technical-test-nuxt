@@ -116,7 +116,7 @@ const config = useRuntimeConfig();
 const tmdbHeaderAuth = config.public.tmdbHeaderAuth;
 const baseUrl = "https://api.themoviedb.org/3";
 
-const { data: movieData, error, pending, refresh } = await useFetch<IMovieDetail>(
+const { data: movieData } = await useFetch<IMovieDetail>(
     `${baseUrl}/movie/${movieId}`,
     {
         method: 'GET',
