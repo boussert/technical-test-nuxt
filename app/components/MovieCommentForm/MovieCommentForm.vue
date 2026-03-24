@@ -1,15 +1,14 @@
 <template>
     <div class="mt-8 p-4">
-        <h3 class="text-lg font-semibold mb-4">Ajouter un commentaire</h3>
+        <h2 class="text-lg font-semibold mb-4">Ajouter un commentaire</h2>
 
         <v-form>
             <v-text-field
                 v-model="state.username"
                 label="Nom d'utilisateur"
                 required
+                :error="v$.username.$error"
                 :error-messages="v$.username.$errors.map((e: { $message: any; }) => e.$message)"
-                @blur="v$.message.$touch"
-                @input="v$.message.$touch"
             >
             </v-text-field>
 
@@ -19,8 +18,6 @@
                 label="Message"
                 required
                 :error-messages="v$.message.$errors.map((e: { $message: any; }) => e.$message)"
-                @blur="v$.message.$touch"
-                @input="v$.message.$touch"
             >
             </v-textarea>
 
@@ -31,8 +28,6 @@
                 :min="1"
                 :max="10"
                 :error-messages="v$.rating.$errors.map((e: { $message: any; }) => e.$message)"
-                @blur="v$.rating.$touch"
-                @input="v$.rating.$touch"
             >
             </v-number-input>
 
@@ -52,11 +47,13 @@ import {
   between,
   helpers
 } from '@vuelidate/validators';
+import { useCommentsStore } from '~/store/comments';
 
 const props = defineProps<{
   movieId: number;
 }>();
 
+const commentsStore = useCommentsStore();
 
 const initialState = {
     username: '',
@@ -75,7 +72,7 @@ const rules = {
         maxLength: helpers.withMessage('Le nom doit être compris entre 3 et 50 caractères', maxLength(50))
     },
     message: {
-        required: helpers.withMessage('Le meessage est requis', required),
+        required: helpers.withMessage('Le message est requis', required),
         minLength: helpers.withMessage('Le nom doit être compris entre 3 et 50 caractères', minLength(3)),
         maxLength: helpers.withMessage('Le nom doit être compris entre 3 et 50 caractères', maxLength(500))
     },
@@ -84,12 +81,25 @@ const rules = {
     }
 }
 
-const v$ = useVuelidate(rules, state);
+const v$ = useVuelidate(rules, state, {
+  $autoDirty: true
+});
 
 const submitCommentForm = async () => {
   const isValid = await v$.value.$validate();
   if (!isValid) return;
 
-  // TODO: add comment to store and empty form
+  commentsStore.addComment({
+    id: crypto.randomUUID(),
+    movieId: props.movieId,
+    username: state.username,
+    message: state.message,
+    rating: state.rating!,
+    createdAt: new Date().toISOString()
+  });
+
+  // Reset form values afterwards
+  Object.assign(state, initialState);
+  v$.value.$reset();
 }
 </script>

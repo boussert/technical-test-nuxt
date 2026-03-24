@@ -12,7 +12,7 @@
             />
         </div>
         
-        <div class="relative -bottom-40 flex-0-0 overflow-hidden rounded-md w-[230px]">
+        <div class="relative -inset-be-[40px] flex-0-0 overflow-hidden rounded-md w-[230px]">
             <img
                 v-if="movieData?.poster_path"
                 class="object-contain"

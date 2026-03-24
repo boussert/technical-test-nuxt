@@ -24,6 +24,29 @@ export default defineNuxtConfig({
     'vuetify-nuxt-module'
   ],
 
+  vuetify: {
+    /* module specific options */
+    moduleOptions: {
+    },
+    /* vuetify options */
+    vuetifyOptions: {
+      theme: {
+        defaultTheme: 'customTheme',
+        themes: {
+          customTheme: {
+            dark: true,
+            // Colors are duplicated between vuetify and tailwind config.
+            // This is not efficient ; this should be refactored to have one source of truth
+            colors: {
+              surfaceA0: 'hsl(219, 62%, 14%)',
+              surfaceA10: 'hsl(223, 33%, 22%)',
+            }
+          }
+        }
+      },
+    }
+  },
+
   css: [
     '@/assets/style/index.scss',
     '@/assets/style/tailwind.css',
